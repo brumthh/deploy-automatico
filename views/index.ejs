@@ -4,11 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App Demo - Informações do Servidor</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      color: red;
+    }
+    #grafico {
+      width: 400px; /* Ajuste o tamanho conforme necessário */
+      height: 300px; /* Ajuste o tamanho conforme necessário */
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
-<h1 style="color:red">TESTANDO PUBLICAÇÃ AUTOMÁTICA!!</h1>
-  <h1 style="color:red">Informações do Servidor</h1>
-  <p>Endereço IP do Servidor: <%= ip %></p>
-  <p>Hora Atual do Servidor: <%= horaAtual %></p>
+  <div class="container">
+    <h1>Informações do Servidor</h1>
+    <p>Endereço IP do Servidor: <%= ip %></p>
+    <p>Hora Atual do Servidor: <%= horaAtual %></p>
+    <canvas id="grafico"></canvas>
+  </div>
+
+  <script>
+    // Dados para o gráfico
+    var dados = {
+      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"],
+      datasets: [{
+        label: "Vendas",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+        data: [12, 19, 3, 5, 2, 3],
+      }]
+    };
+
+    // Configurações do gráfico
+    var config = {
+      type: 'bar',
+      data: dados,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // Inicialização do gráfico
+    var myChart = new Chart(
+      document.getElementById('grafico'),
+      config
+    );
+  </script>
 </body>
 </html>
